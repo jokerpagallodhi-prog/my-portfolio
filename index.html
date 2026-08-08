@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KULDEEP — Personal Portfolio</title>
+
+<style>
+:root{
+  --accent:#00e5ff;
+  --accent2:#7c3cff;
+  --bg:#03050a;
+  --text:#f5f7fb;
+  --muted:#8c96a5;
+  --glass:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+  background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:100% 4px;opacity:.12;
+}
+#stars{position:fixed;inset:0;z-index:-5;overflow:hidden}
+.star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;opacity:.6;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.1;transform:scale(.4)}}
+
+.ambient{
+  position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(100px);
+  opacity:.16;z-index:-4;pointer-events:none
+}
+.a1{background:#00d9ff;left:-160px;top:10%}
+.a2{background:#7c3cff;right:-160px;top:45%}
+.a3{background:#008cff;left:35%;bottom:-250px}
+
+nav{
+  position:fixed;top:0;left:0;right:0;height:78px;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;padding:0 7%;
+  background:rgba(3,5,10,.58);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07)
+}
+.logo{font-weight:900;letter-spacing:5px;font-size:20px}
+.logo b{color:var(--accent)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{color:#aab2bf;text-decoration:none;font-size:12px;letter-spacing:2px;transition:.3s}
+nav a:hover{color:var(--accent)}
+.menu{display:none;color:var(--accent);font-size:24px;cursor:pointer}
+
+section{min-height:100vh;padding:120px 8% 80px;position:relative}
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;
+  align-items:center;gap:50px;padding-top:100px
+}
+.eyebrow{font-size:12px;letter-spacing:5px;color:var(--accent);margin-bottom:20px}
+h1{font-size:clamp(60px,9vw,125px);line-height:.86;letter-spacing:-5px}
+h1 span{
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.65);
+  text-shadow:0 0 30px rgba(0,229,255,.08)
+}
+.role{font-size:clamp(20px,3vw,32px);margin-top:28px;color:#d5d9df}
+#typing{color:var(--accent)}
+.cursor{animation:blink .7s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{max-width:650px;color:var(--muted);line-height:1.8;margin-top:24px;font-size:15px}
+.actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.btn{
+  padding:15px 24px;border:1px solid var(--accent);color:white;text-decoration:none;
+  font-size:12px;letter-spacing:2px;background:rgba(0,229,255,.04);
+  transition:.35s;display:inline-block
+}
+.btn:hover{background:var(--accent);color:#001014;box-shadow:0 0 35px rgba(0,229,255,.25);transform:translateY(-3px)}
+.btn.alt{border-color:var(--line);background:var(--glass)}
+
+.photo-stage{
+  height:570px;display:grid;place-items:center;perspective:1200px;
+}
+.photo-card{
+  width:min(370px,78vw);height:500px;position:relative;
+  transform-style:preserve-3d;transition:transform .12s ease-out;
+  border:1px solid rgba(0,229,255,.38);border-radius:28px;
+  padding:10px;background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.02));
+  box-shadow:0 30px 100px rgba(0,0,0,.6),0 0 60px rgba(0,229,255,.08);
+}
+.photo-card:before{
+  content:"";position:absolute;inset:-2px;border-radius:30px;
+  background:conic-gradient(from 0deg,transparent,#00e5ff,transparent,#7c3cff,transparent);
+  z-index:-1;filter:blur(8px);animation:spin 6s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-wrap{height:100%;overflow:hidden;border-radius:20px;position:relative;background:#0b0d12}
+.photo-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center center;
+  filter:grayscale(100%) contrast(1.08);transition:.6s
+}
+.photo-card:hover img{filter:grayscale(35%) contrast(1.05);transform:scale(1.04)}
+.photo-overlay{
+  position:absolute;inset:auto 0 0;padding:24px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+}
+.photo-overlay strong{font-size:25px;letter-spacing:4px}
+.photo-overlay small{display:block;color:var(--accent);margin-top:5px;letter-spacing:3px}
+
+.orbit{position:absolute;width:470px;height:470px;border:1px dashed rgba(0,229,255,.22);border-radius:50%;animation:orbit 14s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+
+.section-title{font-size:clamp(40px,6vw,75px);letter-spacing:-3px;margin-bottom:15px}
+.section-title span{color:var(--accent)}
+.section-sub{color:var(--muted);max-width:650px;line-height:1.7;margin-bottom:45px}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.glass{
+  background:var(--glass);border:1px solid var(--line);border-radius:22px;
+  padding:30px;backdrop-filter:blur(18px);transition:.35s
+}
+.glass:hover{border-color:rgba(0,229,255,.4);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.glass h3{margin-bottom:15px;font-size:21px}
+.glass p{color:var(--muted);line-height:1.8;font-size:14px}
+
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.skill{text-align:center;padding:28px 15px}
+.skill .icon{font-size:35px;margin-bottom:14px}
+.skill h3{font-size:14px;letter-spacing:1px}
+.skill p{font-size:12px;color:var(--muted);margin-top:8px}
+
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.project{min-height:260px;position:relative;overflow:hidden}
+.project .number{font-size:12px;color:var(--accent);letter-spacing:3px}
+.project h3{font-size:25px;margin:35px 0 12px}
+.project p{color:var(--muted);font-size:13px;line-height:1.7}
+.project .tag{display:inline-block;margin-top:20px;padding:7px 10px;border:1px solid var(--line);font-size:10px;color:#b8c0cc;letter-spacing:1px}
+
+.contact-box{
+  max-width:900px;margin:auto;text-align:center;padding:65px 30px;
+  position:relative;overflow:hidden
+}
+.contact-box:after{
+  content:"";position:absolute;width:250px;height:250px;border-radius:50%;
+  background:var(--accent);filter:blur(120px);opacity:.1;left:50%;top:50%;transform:translate(-50%,-50%)
+}
+.contact-box>*{position:relative;z-index:2}
+.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px}
+.contact-details{width:100%;color:var(--muted);font-size:12px;letter-spacing:1px;margin-top:8px}.contact-details{word-break:break-word}
+
+footer{text-align:center;padding:30px;color:#596170;font-size:11px;letter-spacing:2px;border-top:1px solid var(--line)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:1s}
+.reveal.show{opacity:1;transform:none}
+
+
+/* MY SECRET */
+.secret-intro{
+  max-width:700px;
+  margin:0 auto 28px;
+}
+.secret-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  max-width:800px;
+  margin:0 auto;
+  text-align:left;
+}
+.secret-card{
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  transition:.35s;
+}
+.secret-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(0,229,255,.4);
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
+}
+.secret-card-icon{
+  font-size:28px;
+  margin-bottom:12px;
+}
+.secret-card h4{
+  color:var(--accent);
+  letter-spacing:2px;
+  margin-bottom:9px;
+}
+.secret-card p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.secret-quote{
+  margin-top:28px;
+  color:#aeb6c2;
+  letter-spacing:4px;
+  font-size:11px;
+}
+.secret-quote span{color:var(--accent)}
+
+@media(max-width:600px){
+  .secret-grid{grid-template-columns:1fr}
+}
+
+.secret-box{max-width:900px;margin:auto;text-align:center;overflow:hidden;position:relative}
+.secret-box:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:#7c3cff;filter:blur(120px);opacity:.10;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.secret-box > *{position:relative;z-index:2}
+.lock-icon,.unlock-icon{font-size:48px;margin:5px 0 18px}
+.secret-box h3{font-size:22px;letter-spacing:3px}
+.secret-box p{color:var(--muted);line-height:1.7}
+.password-row{display:flex;justify-content:center;gap:10px;margin:28px auto 10px;max-width:520px}
+.password-row input{flex:1;min-width:0;padding:15px 17px;border-radius:10px;border:1px solid var(--line);outline:none;color:white;background:rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+.password-row input:focus{border-color:var(--accent);box-shadow:0 0 20px rgba(0,229,255,.12)}
+#secretError{min-height:22px;color:#ff5f7a;font-size:12px;margin-top:8px}
+.secret-message{display:none;padding:35px 15px 10px;animation:secretReveal .7s ease}
+.secret-message strong{color:var(--accent)}
+@keyframes secretReveal{from{opacity:0;transform:scale(.94);filter:blur(8px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@media(max-width:600px){.password-row{flex-direction:column}.password-row .btn{width:100%}}
+
+@media(max-width:900px){
+  nav ul{display:none}.menu{display:block}
+  .hero{grid-template-columns:1fr;padding-top:130px}
+  .photo-stage{height:500px;order:-1}
+  .skills{grid-template-columns:1fr 1fr}
+  .projects{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  section{padding-left:6%;padding-right:6%}
+  h1{font-size:62px}
+  .photo-card{height:430px}
+  .orbit{width:390px;height:390px}
+}
+
+.profile-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+<div class="ambient a1"></div><div class="ambient a2"></div><div class="ambient a3"></div>
+
+<nav>
+  <div class="logo"><b>&lt;</b>KULDEEP<b>/&gt;</b></div>
+  <ul>
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#secret">MY SECRET</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <div class="menu">☰</div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-text reveal">
+    <div class="eyebrow">WELCOME TO MY DIGITAL SPACE</div>
+    <h1>KUL<span>DEEP</span></h1>
+    <div class="role">I'm a <span id="typing"></span><span class="cursor">|</span></div>
+    <p>
+      I am a student and technology enthusiast who enjoys robotics,
+      programming, artificial intelligence and building creative projects.
+      I like learning by making things and turning ideas into working systems.
+    </p>
+    <div class="actions">
+      <a class="btn" href="#about">EXPLORE ME</a>
+      <a class="btn alt" href="#projects">VIEW PROJECTS</a>
+    </div>
+  </div>
+
+  <div class="photo-stage">
+    <div class="orbit"></div>
+    <div class="photo-card" id="photoCard">
+      <div class="photo-wrap">
+        <img src="./1000030224.png" alt="My portrait">
+        <div class="photo-overlay">
+          <strong>KULDEEP</strong>
+          <small>FOCUS • PLAN • EXECUTE</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="reveal">
+    <div class="eyebrow">01 / ABOUT</div>
+    <h2 class="section-title">A LITTLE <span>ABOUT ME</span></h2>
+    <p class="section-sub">A student mindset focused on curiosity, technology and creating things that actually work.</p>
+  </div>
+  <div class="about-grid">
+    <div class="glass reveal">
+      <h3>Who I Am</h3>
+      <p>
+        I'm a student who is curious about technology and enjoys exploring
+        robotics, coding, electronics and artificial intelligence. I prefer
+        practical learning—building, testing, fixing and improving.
+      </p>
+    </div>
+    <div class="glass reveal">
+      <h3>My Mindset</h3>
+      <p>
+        Learn continuously, stay disciplined, experiment with ideas and
+        keep improving. Every project is an opportunity to understand
+        something new.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="reveal">
+    <div class="eyebrow">02 / SKILLS</div>
+    <h2 class="section-title">WHAT I <span>EXPLORE</span></h2>
+    <p class="section-sub">Technologies and areas I am learning through experiments and projects.</p>
+  </div>
+  <div class="skills">
+    <div class="glass skill reveal"><div class="icon">🤖</div><h3>ROBOTICS</h3><p>Arduino • Sensors • Motors</p></div>
+    <div class="glass skill reveal"><div class="icon">💻</div><h3>PROGRAMMING</h3><p>HTML • CSS • JavaScript</p></div>
+    <div class="glass skill reveal"><div class="icon">🧠</div><h3>AI / ML</h3><p>Exploring intelligent systems</p></div>
+    <div class="glass skill reveal"><div class="icon">⚡</div><h3>ELECTRONICS</h3><p>Circuits • Modules • Prototyping</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="reveal">
+    <div class="eyebrow">03 / PROJECTS</div>
+    <h2 class="section-title">THINGS I'VE <span>BUILT</span></h2>
+    <p class="section-sub">A few examples of the kind of technology projects I like creating.</p>
+  </div>
+  <div class="projects">
+    <div class="glass project reveal">
+      <div class="number">PROJECT 01</div>
+      <h3>MARS-X</h3>
+      <p>An autonomous Mars colony concept combining smart habitats, environmental monitoring and rover-based exploration.</p>
+      <span class="tag">ROBOTICS / SPACE TECH</span>
+    </div>
+    <div class="glass project reveal">
+      <div class="number">PROJECT 02</div>
+      <h3>SMART ROVER</h3>
+      <p>A sensor-based rover concept for collecting environmental and soil information using embedded electronics.</p>
+      <span class="tag">ARDUINO / SENSORS</span>
+    </div>
+    <div class="glass project reveal">
+      <div class="number">PROJECT 03</div>
+      <h3>FIRE SEEKER</h3>
+      <p>A life-saving robotics concept designed around environmental sensing and remote movement.</p>
+      <span class="tag">ROBOTICS / SAFETY</span>
+    </div>
+    <div style="grid-column:1/-1;text-align:center;margin-top:15px;"><a class="btn alt" href="page2.html">PAGE 2 / PROJECT ARCHIVE</a></div>
+  </div>
+</section>
+
+
+<section id="secret">
+  <div class="glass secret-box reveal">
+    <div class="eyebrow">04 / RESTRICTED</div>
+    <h2 class="section-title">MY <span>SECRET</span></h2>
+    <p class="section-sub">This section is private. Only someone with the correct password can reveal the message.</p>
+    <div id="secretLocked">
+      <div class="lock-icon">🔐</div>
+      <h3>ACCESS RESTRICTED</h3>
+      <p>Enter the password to unlock my secret.</p>
+      <div class="password-row">
+        <input id="secretPassword" type="password" placeholder="Enter password" autocomplete="off">
+        <button class="btn" type="button" onclick="unlockSecret()">UNLOCK</button>
+      </div>
+      <div id="secretError"></div>
+    </div>
+    <div id="secretUnlocked" class="secret-message">
+      <div class="unlock-icon">✓</div>
+      <h3>SECRET UNLOCKED</h3>
+
+      <p class="secret-intro">
+        Welcome to the part of my portfolio that is a little more personal.
+        Here are some of the ambitions and interests that drive me.
+      </p>
+
+      <div class="secret-grid">
+        <div class="secret-card">
+          <div class="secret-card-icon">📈</div>
+          <h4>TRADING</h4>
+          <p>
+            I am fascinated by financial markets, charts, price movement,
+            market psychology, risk management and the discipline required
+            to make thoughtful decisions. I am especially interested in
+            learning about Forex and becoming highly skilled through study
+            and practice.
+          </p>
+        </div>
+
+        <div class="secret-card">
+          <div class="secret-card-icon">💼</div>
+          <h4>BUSINESS</h4>
+          <p>
+            I want to become an entrepreneur and build businesses of my own.
+            I enjoy thinking about products, brands, websites, online
+            business models, marketing and how an idea can become something
+            useful in the real world.
+          </p>
+        </div>
+
+        <div class="secret-card">
+          <div class="secret-card-icon">🚀</div>
+          <h4>MY FUTURE</h4>
+          <p>
+            My goal is to keep developing skills in technology, business and
+            finance while building projects and learning from every
+            experiment. I want to create rather than simply follow.
+          </p>
+        </div>
+
+        <div class="secret-card">
+          <div class="secret-card-icon">🧠</div>
+          <h4>MY MINDSET</h4>
+          <p>
+            Focus. Discipline. Patience. Learning. Execution.
+            I believe long-term progress comes from improving a little
+            every day and staying consistent with the goals that matter.
+          </p>
+        </div>
+      </div>
+
+      <div class="secret-quote">
+        <span>FOCUS</span> • <span>PLAN</span> • <span>EXECUTE</span> • <span>REPEAT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="glass contact-box reveal">
+    <div class="eyebrow">05 / CONTACT</div>
+    <h2 class="section-title">LET'S <span>CONNECT</span></h2>
+    <p class="section-sub" style="margin:0 auto">
+      Want to talk about technology, robotics, coding or a project idea?
+      Add your preferred contact links below.
+    </p>
+    <div class="contact-links">
+      <a class="btn" href="mailto:jokerpagallodhi@gmail.com">EMAIL ME</a>
+      <a class="btn alt" href="https://instagram.com/Kuldeep42036" target="_blank" rel="noopener">INSTAGRAM @KULDEEP42036</a>
+      <div class="contact-details">jokerpagallodhi@gmail.com &nbsp; • &nbsp; @Kuldeep42036</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 KULDEEP • BUILT WITH HTML, CSS & JAVASCRIPT
+</footer>
+
+<script>
+// Star field
+const stars=document.getElementById("stars");
+for(let i=0;i<150;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDelay=(Math.random()*3)+"s";
+  const size=1+Math.random()*2;
+  s.style.width=size+"px";s.style.height=size+"px";
+  stars.appendChild(s);
+}
+
+// Typing effect
+const words=["Student","Robotics Enthusiast","Future Engineer","AI Explorer","Young Creator"];
+let wi=0,ci=0,del=false;
+function typing(){
+  const el=document.getElementById("typing"), word=words[wi];
+  el.textContent=word.slice(0,ci);
+  if(!del){ci++;if(ci>word.length){del=true;setTimeout(typing,1100);return}}
+  else{ci--;if(ci<0){ci=0;del=false;wi=(wi+1)%words.length}}
+  setTimeout(typing,del?55:105);
+}
+typing();
+
+// Mouse-following 3D photo
+const card=document.getElementById("photoCard");
+window.addEventListener("mousemove",(e)=>{
+  const x=(e.clientX/window.innerWidth-.5);
+  const y=(e.clientY/window.innerHeight-.5);
+  card.style.transform=`rotateY(${x*16}deg) rotateX(${-y*16}deg) translateZ(8px)`;
+});
+window.addEventListener("mouseleave",()=>card.style.transform="");
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add("show");
+  });
+},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+// My Secret password gate
+function unlockSecret(){
+  const input=document.getElementById("secretPassword");
+  const error=document.getElementById("secretError");
+  const locked=document.getElementById("secretLocked");
+  const unlocked=document.getElementById("secretUnlocked");
+
+  if(input.value==="kuldeepsecret123"){
+    error.textContent="";
+    locked.style.display="none";
+    unlocked.style.display="block";
+  }else{
+    error.textContent="Incorrect password. Access denied.";
+    input.value="";
+    input.focus();
+  }
+}
+document.getElementById("secretPassword").addEventListener("keydown",function(e){
+  if(e.key==="Enter") unlockSecret();
+});
+
+</script>
+</body>
+</html>
