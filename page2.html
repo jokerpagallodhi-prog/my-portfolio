@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KULDEEP | Project Archive</title>
+<style>
+:root{--a:#00e5ff;--p:#7c3cff;--bg:#03050a;--m:#8c96a5;--l:rgba(255,255,255,.12)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;font-family:Arial,sans-serif;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:-5}.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:t 2s infinite alternate}@keyframes t{to{opacity:.1;transform:scale(.4)}}
+.glow{position:fixed;width:400px;height:400px;border-radius:50%;filter:blur(120px);opacity:.13;z-index:-4}.g1{background:var(--a);left:-180px;top:10%}.g2{background:var(--p);right:-180px;bottom:5%}
+nav{height:78px;position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:#03050acc;backdrop-filter:blur(18px);border-bottom:1px solid var(--l)}
+.logo{font-weight:900;letter-spacing:5px}.logo span{color:var(--a)}nav a{color:#aab2bf;text-decoration:none;font-size:11px;letter-spacing:2px}
+.hero{padding:150px 8% 70px;min-height:58vh;display:flex;align-items:center}.eyebrow{color:var(--a);font-size:11px;letter-spacing:5px;margin-bottom:20px}
+h1{font-size:clamp(55px,9vw,105px);line-height:.9;letter-spacing:-5px}h1 span{color:transparent;-webkit-text-stroke:1px #ffffff99}
+.hero p{max-width:700px;color:var(--m);line-height:1.8;margin-top:25px}.btn{display:inline-block;margin-top:28px;padding:14px 22px;border:1px solid var(--a);color:#fff;text-decoration:none;letter-spacing:2px;font-size:11px;background:#00e5ff08;cursor:pointer}.btn:hover{background:var(--a);color:#001014;box-shadow:0 0 30px #00e5ff40}
+.projects{padding:30px 8% 100px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{min-height:290px;padding:28px;border:1px solid var(--l);border-radius:22px;background:#ffffff08;backdrop-filter:blur(18px);transition:.35s}.card:hover{transform:translateY(-8px);border-color:#00e5ff66;box-shadow:0 20px 60px #0008}
+.num{color:var(--a);font-size:10px;letter-spacing:3px}.icon{font-size:38px;margin:25px 0 13px}.card h2{font-size:23px;margin-bottom:12px}.card p{color:var(--m);font-size:13px;line-height:1.75}.tag{display:inline-block;margin-top:18px;padding:7px 9px;border:1px solid #00e5ff44;color:var(--a);font-size:9px;letter-spacing:2px}
+.secret{max-width:950px;margin:0 auto 90px;padding:55px 35px;text-align:center;border:1px solid var(--l);border-radius:25px;background:#ffffff08;backdrop-filter:blur(20px)}.secret h2{font-size:clamp(38px,6vw,65px);margin-bottom:15px}.secret h2 span{color:var(--a)}.secret>p{color:var(--m);line-height:1.7}
+.row{display:flex;max-width:520px;margin:25px auto 0;gap:10px}input{flex:1;padding:15px;border:1px solid var(--l);border-radius:9px;background:#0006;color:#fff;outline:none}input:focus{border-color:var(--a)}.error{height:20px;color:#ff5f7a;font-size:12px;margin-top:8px}
+.vault{display:none;margin-top:30px;animation:show .7s}@keyframes show{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.vaultgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:25px;text-align:left}.item{padding:20px;border:1px solid var(--l);border-radius:15px;background:#ffffff05}.item h3{color:var(--a);font-size:15px;margin-bottom:8px}.item p{color:var(--m);font-size:12px;line-height:1.6}
+footer{text-align:center;padding:30px;border-top:1px solid var(--l);color:#596170;font-size:10px;letter-spacing:2px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.grid,.vaultgrid{grid-template-columns:1fr}.row{flex-direction:column}.row .btn{width:100%}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="glow g1"></div><div class="glow g2"></div>
+
+<nav><div class="logo"><span>&lt;</span>KULDEEP<span>/&gt;</span></div><a href="index.html">← PAGE 1</a></nav>
+
+<header class="hero">
+<div>
+<div class="eyebrow">PAGE 02 / PROJECT ARCHIVE</div>
+<h1>MY <span>PROJECTS</span></h1>
+<p>This page is my project archive — a collection of the builds and concepts I have worked on while learning robotics, electronics, programming and technology.</p>
+<a class="btn" href="#vault">OPEN SECOND SECRET</a>
+</div>
+</header>
+
+<section class="projects">
+<div class="grid">
+<article class="card"><div class="num">PROJECT 01</div><div class="icon">🔥</div><h2>Fire Seeker</h2><p>A life-saving robot concept using environmental sensing and remote movement for safety-focused robotics.</p><span class="tag">COMPLETED BUILD</span></article>
+<article class="card"><div class="num">PROJECT 02</div><div class="icon">🚀</div><h2>MARS-X</h2><p>An autonomous Mars colony concept combining rover exploration, environmental monitoring and smart habitat systems.</p><span class="tag">COMPLETED PROJECT</span></article>
+<article class="card"><div class="num">PROJECT 03</div><div class="icon">🤖</div><h2>Smart Rover</h2><p>A sensor-based rover for collecting soil, temperature and environmental information using embedded electronics.</p><span class="tag">COMPLETED BUILD</span></article>
+<article class="card"><div class="num">PROJECT 04</div><div class="icon">🛰️</div><h2>Swarm Rover</h2><p>A small-rover exploration concept focused on multiple robots working together for Mars-style exploration.</p><span class="tag">PROTOTYPE / CONCEPT</span></article>
+<article class="card"><div class="num">PROJECT 05</div><div class="icon">🌱</div><h2>Smart Greenhouse</h2><p>A Mars agriculture subsystem concept focused on controlled plant growth and smart environmental management.</p><span class="tag">MARS-X SUBSYSTEM</span></article>
+<article class="card"><div class="num">PROJECT 06</div><div class="icon">💻</div><h2>Personal Portfolio</h2><p>This interactive website with animated UI, 3D effects, glassmorphism and password-protected secrets.</p><span class="tag">COMPLETED WEBSITE</span></article>
+</div>
+</section>
+
+<section class="secret" id="vault">
+<div class="eyebrow">RESTRICTED / SECOND SECRET</div>
+<h2>PROJECT <span>VAULT</span></h2>
+<p>Enter the same password to unlock my private project record.</p>
+<div class="row"><input id="pass" type="password" placeholder="Enter password" autocomplete="off"><button class="btn" onclick="unlock()">UNLOCK</button></div>
+<div class="error" id="err"></div>
+
+<div class="vault" id="vaultContent">
+<h2>✓ ACCESS GRANTED</h2>
+<p>My project record has been unlocked.</p>
+<div class="vaultgrid">
+<div class="item"><h3>01 — Fire Seeker</h3><p>Life-saving robotics and environmental sensing.</p></div>
+<div class="item"><h3>02 — MARS-X</h3><p>Autonomous Mars colony and rover technology.</p></div>
+<div class="item"><h3>03 — Smart Rover</h3><p>Soil and environmental monitoring rover.</p></div>
+<div class="item"><h3>04 — Swarm Rover</h3><p>Cooperative small-rover exploration concept.</p></div>
+<div class="item"><h3>05 — Smart Greenhouse</h3><p>Controlled Mars agriculture subsystem.</p></div>
+<div class="item"><h3>06 — Personal Portfolio</h3><p>Interactive animated portfolio website.</p></div>
+</div>
+</div>
+</section>
+
+<footer>© 2026 KULDEEP • PROJECT ARCHIVE</footer>
+<script>
+const s=document.getElementById("stars");
+for(let i=0;i<140;i++){let x=document.createElement("div");x.className="star";x.style.left=Math.random()*100+"%";x.style.top=Math.random()*100+"%";x.style.animationDelay=Math.random()*3+"s";s.appendChild(x)}
+function unlock(){let p=document.getElementById("pass"),e=document.getElementById("err"),v=document.getElementById("vaultContent");if(p.value==="kuldeepsecret123"){e.textContent="";v.style.display="block";p.value=""}else{e.textContent="Incorrect password. Access denied.";p.value="";p.focus()}}
+document.getElementById("pass").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+</script>
+</body>
+</html>
